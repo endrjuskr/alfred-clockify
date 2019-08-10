@@ -1,0 +1,6 @@
+.env
+lib
+bin
+include
+.Python
+__pycache__
