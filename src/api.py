@@ -1,8 +1,6 @@
 from config import API_URL
-import datetime
+import utils
 import requests
-
-
 
 def get_all_workspaces(token):
     headers = {
@@ -21,31 +19,29 @@ def get_all_projects(token, workspaceId):
         'content-type': 'application/json',
         'X-Api-Key': token
     }
-    response = requests.get(API_URL + f"workspaces/{workspaceId}/projects", headers=headers)
+    response = requests.get(API_URL + "workspaces/" + workspaceId + "/projects", headers=headers)
     data = response.json()
 
     projects = list(map(lambda x: { "id": x['id'], "name": x['name'] }, data))
     return projects
 
-def put_time_entry(token, workspaceId, projectId, date, numHours):
+def put_time_entry(token, workspaceId, projectId, date_str, hours_spent):
     headers = {
         'content-type': 'application/json',
         'X-Api-Key': token
     }
-    start_date = datetime.datetime.strptime(date, '%Y-%m-%d') +  datetime.timedelta(hours=7)
-    end_date = start_date + datetime.timedelta(hours=numHours)
-
-    date_format = "%Y-%m-%dT%H:%M:%S.%fZ"
+    
+    [start, end] = utils.get_timeentry_range(date_str, hours_spent)
 
     data = {
-        "start": start_date.strftime(date_format),
+        "start": start,
         "billable": "true",
         "projectId": projectId,
-        "end": end_date.strftime(date_format),
+        "end": end,
     }
 
     print(data)
-    response = requests.post(API_URL + f"workspaces/{workspaceId}/time-entries", json=data, headers=headers)
+    response = requests.post(API_URL + "workspaces/" + workspaceId + "/time-entries", json=data, headers=headers)
     data = response.json()
 
     print(data)
