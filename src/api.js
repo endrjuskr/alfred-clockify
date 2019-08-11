@@ -16,3 +16,17 @@ export const get_workspaces = async (token) => {
     // console.log(workspaces);
     return workspaces;
 }
+
+export const get_projects_from_workspace = async (token, workspace) => {
+    const response = await axios.get(`${API_URL}/workspaces/${workspace}/projects`, {
+        headers: {
+            'content-type': 'application/json',
+            'X-Api-Key': token
+        }
+    });
+
+    const projects = _.map(response.data, d => _.pick(d, ["id", "name"]));
+
+    // console.log(workspaces);
+    return projects;
+}
