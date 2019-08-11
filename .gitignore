@@ -4,3 +4,7 @@ bin
 include
 .Python
 __pycache__
+yarn-error.log
+node_modules
+.cache
+dist
