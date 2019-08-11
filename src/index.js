@@ -13,7 +13,10 @@ const main = async () => {
         return {
             title: d.name,
             subtitle: d.id,
-            arg: d.id
+            arg: d.id,
+            icon: {
+                path: 'briefcase.png'
+            }
         };
     });
 
