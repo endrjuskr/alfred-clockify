@@ -42,15 +42,51 @@ const project = async (workspace) => {
         };
     });
 
-    // console.log(items);
-
     alfy.output(items);
+}
+
+const init = () => {
+    const token = alfy.config.get('token');
+    let output = []
+    if (token) {
+        output = [
+            {
+                title: `Report time entry`,
+                subtitle: `Add time entry to specific project`,
+                arg: 'report',
+            },
+            {
+                title: `change your token`,
+                subtitle: `Change your existing token (${token.substring(0, 3)}...)`,
+                arg: 'token',
+            }
+        ]
+    } else {
+        output = [
+            {
+                title: `Set your token`,
+                subtitle: `Set your clockify token`,
+                arg: 'token',
+            }
+        ]
+    }
+
+    alfy.output(output);
 }
 
 const args = process.argv.slice(2);
 
-if (args.length === 1) {
+if (args.length === 0) {
+    init();
+} else {
+
+    if (args[0] === "token") {
+        alfy.config.set('token', args[1]);
+    }
+
+if (args[0] === "workspace") {
     main();
 } else {
     project(args[1])
+}
 }
