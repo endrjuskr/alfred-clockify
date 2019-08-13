@@ -1951,6 +1951,13 @@ cliui@^5.0.0:
     strip-ansi "^5.2.0"
     wrap-ansi "^5.1.0"
 
+clockify-npm@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/clockify-npm/-/clockify-npm-0.0.6.tgz#e80daa5440db14660c3ac6a636b02cc2cbcc70ef"
+  integrity sha512-qZNwLj2+swyhp99l2cSbDkqaC6W5vkWeczr4lWIJSENb6QjtXOirN1abWvxqnG35zMe0ilLhmOqslKW2BGsnnw==
+  dependencies:
+    request "^2.88.0"
+
 clone-response@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/clone-response/-/clone-response-1.0.2.tgz#d1dc973920314df67fbeb94223b4ee350239e96b"

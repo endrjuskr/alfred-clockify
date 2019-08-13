@@ -1,5 +1,5 @@
 import * as alfy from "alfy";
-import * as api from "./api";
+import * as Clockify from "clockify-npm";
 import * as command from "./command";
 import { with_cache } from "./cache";
 
@@ -10,12 +10,13 @@ export const init = () => {
 
 export const get_workspaces = () => {
     const token = alfy.config.get('token');
+    Clockify.SetKey(token);
     if (!token) {
         error("Token is missing");
     } else {
         with_cache(
             "workspaces",
-            () => api.get_workspaces(token),
+            () => Clockify.Workspaces.get(),
             (raw_workspaces) => alfy.output(command.get_workspaces(raw_workspaces))
         );
     }
