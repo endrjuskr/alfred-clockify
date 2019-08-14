@@ -22,6 +22,20 @@ export const get_workspaces = () => {
     }
 }
 
+export const get_projects = (workspaceId) => {
+    const token = alfy.config.get('token');
+    Clockify.SetKey(token);
+    if (!token) {
+        error("Token is missing");
+    } else {
+        with_cache(
+            `workspace_${workspaceId}`,
+            () => Clockify.Workspaces.getProjects(workspaceId),
+            (raw_projects) => alfy.output(command.get_projects(raw_projects))
+        );
+    }
+}
+
 export const set_token = (token) => {
     alfy.config.set('token', token);
 }

@@ -32,8 +32,8 @@ export const get_workspaces = (workspaces) => {
     });
 }
 
-export const get_projects = (workspaces) => {
-    return _.map(workspaces, d => { 
+export const get_projects = (projects) => {
+    return _.map(projects, d => { 
         return {
             title: d.name,
             subtitle: d.id,
