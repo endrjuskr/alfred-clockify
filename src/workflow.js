@@ -10,13 +10,15 @@ export const init = () => {
 
 export const get_workspaces = () => {
     const token = alfy.config.get('token');
-    Clockify.SetKey(token);
     if (!token) {
         error("Token is missing");
     } else {
         with_cache(
             "workspaces",
-            () => Clockify.Workspaces.get(),
+            () => {
+                Clockify.SetKey(token);
+                return Clockify.Workspaces.get();
+            },
             (raw_workspaces) => alfy.output(command.get_workspaces(raw_workspaces))
         );
     }
@@ -30,7 +32,10 @@ export const get_projects = (workspaceId) => {
     } else {
         with_cache(
             `workspace_${workspaceId}`,
-            () => Clockify.Workspaces.getProjects(workspaceId),
+            () => {
+                Clockify.SetKey(token);
+                return Clockify.Workspaces.getProjects(workspaceId);
+            },
             (raw_projects) => alfy.output(command.get_projects(raw_projects))
         );
     }

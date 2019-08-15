@@ -6,7 +6,7 @@ if (args.length === 0) {
     workflow.init();
 } else {
     if (args[0] === "token") {
-        workflow.set_token(token);
+        workflow.set_token(args[1]);
     } else if (args[0] === "workspace") {
         workflow.get_workspaces();
     } else if (args[0] === "project") {

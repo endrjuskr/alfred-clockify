@@ -1,9 +1,11 @@
+import * as _ from "lodash";
+
 export const init = (token) => {
     return (token) ? [
         {
             title: `Report time entry`,
             subtitle: `Add time entry to specific project`,
-            arg: 'report',
+            arg: 'workspace',
         },
         {
             title: `Change your token`,
