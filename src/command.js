@@ -46,3 +46,14 @@ export const get_projects = (projects) => {
         };
     });
 }
+
+export const save_entry = (hours, project) => {
+    return {
+        title: `Save time entry`,
+        subtitle: `Save ${hours} hour/s for project ${project}`,
+        arg: `save`,
+        icon: {
+            path: 'save.png'
+        }
+    };
+}

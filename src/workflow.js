@@ -41,6 +41,35 @@ export const get_projects = (workspaceId) => {
     }
 }
 
+export const save_time_entry = (workspaceId, projectId, hours) => {
+    const token = alfy.config.get('token');
+    Clockify.SetKey(token);
+    if (!token) {
+        error("Token is missing");
+    } else {
+        Clockify.SetKey(token);
+        return Clockify.Workspaces.addTimeEntry(workspaceId, {
+            ,
+            "start": "string",
+            "billable": "boolean",
+            "description": "string",
+            "projectId": "string",
+            "userId": "string",
+            "taskId": "string",
+            "end": "string",
+            "tagIds": [
+              "string"
+            ],
+            "timeInterval": {
+              "start": "string",
+              "end": "string"
+            },
+            "workspaceId": "string",
+            "isLocked": "boolean"
+          }).getProjects(workspaceId);    
+    }
+}
+
 export const set_token = (token) => {
     alfy.config.set('token', token);
 }
