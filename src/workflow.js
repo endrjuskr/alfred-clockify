@@ -2,6 +2,7 @@ import * as alfy from "alfy";
 import * as Clockify from "clockify-npm";
 import * as command from "./command";
 import { with_cache } from "./cache";
+import { create_time_entry_request_body } from "./clockify";
 
 export const init = () => {
     const token = alfy.config.get('token');
@@ -48,25 +49,7 @@ export const save_time_entry = (workspaceId, projectId, hours) => {
         error("Token is missing");
     } else {
         Clockify.SetKey(token);
-        return Clockify.Workspaces.addTimeEntry(workspaceId, {
-            ,
-            "start": "string",
-            "billable": "boolean",
-            "description": "string",
-            "projectId": "string",
-            "userId": "string",
-            "taskId": "string",
-            "end": "string",
-            "tagIds": [
-              "string"
-            ],
-            "timeInterval": {
-              "start": "string",
-              "end": "string"
-            },
-            "workspaceId": "string",
-            "isLocked": "boolean"
-          }).getProjects(workspaceId);    
+        return Clockify.Workspaces.addTimeEntry(workspaceId, create_time_entry_request_body(projectId, hours));
     }
 }
 
