@@ -15,7 +15,7 @@
     "clockify-npm": "^0.0.6",
     "fs": "^0.0.1-security",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "yargs": "^13.3.0"
   },
   "devDependencies": {
